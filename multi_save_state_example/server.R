@@ -47,13 +47,10 @@
     # The reactive function observeEvent is used to observe save button
     # On pressing the save button:
     #   set the number of extra plots up one number
-    #     - this is isolated so that the plot code does not run early
     #   attach the current concentrations to the end of the currently saved
     #   concentrations (Cp), and assign a colour to them (palette)
     observeEvent(input$save, {
-      isolate({
-        rv$n <- rv$n + 1
-      })
+      rv$n <- rv$n + 1
       rv$Sconc <- rbind(
         rv$Sconc,
         data.frame(
@@ -68,9 +65,7 @@
     #   reset the number of extra plots to zero
     #   reset the saved concentrations to none
     observeEvent(input$clear, {
-      isolate({
-        rv$n <- 0
-      })
+      rv$n <- 0
       rv$Sconc <- data.frame(Cp = NULL, palette = NULL)
     })  #observeEvent
 
