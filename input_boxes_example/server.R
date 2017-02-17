@@ -1,6 +1,4 @@
 # Example of the use of input boxes
-# This still needs some cleaning and commenting but effectively shows the
-# functionality of the app
 
 # Normally if you set up a render ui that changes depending on a counter the
 # values that you have entered will disappear.
