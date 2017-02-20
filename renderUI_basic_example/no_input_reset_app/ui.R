@@ -12,13 +12,7 @@
       hr(),
       actionButton("add", "Add"),  # actionButton
       actionButton("rem", "Remove"),  # actionButton
-      hr(),
-      p("Every time a new slider is added, the values for each slider will reset."),
-      p("To prevent this you can save the current value in a reactiveValues object
-        whenever add or remove is pressed."),
-      p("This reactiveValue object will then
-        be the new number for the value argument in sliderInput."),
-      p("Example app in no_input_reset_app sub-directory.")
+      hr()
     ),  # column
     align = "center"
   )  # fixedPage
