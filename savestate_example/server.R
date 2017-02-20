@@ -35,7 +35,7 @@
     })  # Rconc
 
     # Now set up your reactiveValue object where you will create "save states"
-    # This is where the function governing the second line will be saved
+    # This is where the data describing the second line will be saved
     # While reactive() is used to create a reactive object, reactiveValues is
     # used to create a list of reactive values inside of a non-reactive object
     # It shares many similarities with list()
