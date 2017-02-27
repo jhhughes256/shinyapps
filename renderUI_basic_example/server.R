@@ -96,23 +96,23 @@
       row.conc <- ldply(dose, function(dose) {
         dose*KA/V*(KA - CL/V)*(exp(-CL/V*time) - exp(-KA*time))
       })
-      # We now have a data.frame that has concentrations for rv$n doses stored in
-      # rows of data, but this isn't useful for ggplot2
-      conc <- ldply(seq_len(rv$n), function(i) {
-        data.frame(
-          Cp = as.numeric(row.conc[i, ]),
-          n = cPalette[i]
-        )
-      })
     })  # Rconc
 
     # Render your plot so that there is a geom_line for each dose
     # Using as.numeric() we convert the rows of data.frame into a vector
     output$concPlot <- renderPlot({
+    # We now have a data.frame that has concentrations for rv$n doses stored in
+    # rows of data, but this isn't useful for ggplot2
+    conc <- ldply(seq_len(rv$n), function(i) {
+      data.frame(
+        Cp = as.numeric(Rconc()[i, ]),
+        n = cPalette[i]
+      )
+    })
     # Create the basic ggplot2 object for output
       plotobj <- ggplot()
-      plotobj <- plotobj + geom_line(aes(x = rep(time, rv$n), y = Rconc()$Cp,
-        colour = Rconc()$n))
+      plotobj <- plotobj + geom_line(aes(x = rep(time, rv$n), y = conc$Cp,
+        colour = conc$n))
       plotobj <- plotobj + scale_colour_manual(values=cPalette)
       plotobj <- plotobj + scale_x_continuous("\nTime (hours)")
       plotobj <- plotobj + scale_y_continuous("Concentration (mg/L)\n",
