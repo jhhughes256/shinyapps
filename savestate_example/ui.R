@@ -3,7 +3,7 @@
   fixedPage(
     h3("1-compartment, first-order oral absorption kinetics"),
     hr(),
-    plotOutput("concPlot",width = 600),  # Concentration-time profile output
+    plotOutput("concPlot", width = 600),  # Concentration-time profile output
     column(9,
       sliderInput("DOSE",
         "Dose (mg):",
