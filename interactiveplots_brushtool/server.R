@@ -6,6 +6,11 @@ shinyServer(function(input, output, session) {
 # Set up reactive values to keep track of which subset you are up to
   rv <- reactiveValues(n = 1)
 
+# Set up a title that is dependent on the subset you are observing
+  output$title <- renderText({
+    paste("cyl =", sub.cyl[rv$n])
+  })
+
 # Create a subset of the data depending on how many times the user has pressed
 # sub.cyl is located in global.R and is the unique values for the column you
 # plan to subset your data by
@@ -15,6 +20,8 @@ shinyServer(function(input, output, session) {
 
 # Plot the subsetted data
 # The plot is just a regular plot unless made interactive in ui.R
+# Rdata() is used as if mtcars was used, it is possible to highlight points
+#   that are not on the screen!
   output$plot <- renderPlot({
     plotobj <- ggplot(Rdata(), aes(x = wt, y = mpg)) +
       geom_point() +
@@ -24,7 +31,7 @@ shinyServer(function(input, output, session) {
 
 # Output the info gained from using brush on plot points
   output$info <- renderPrint({
-    brushedPoints(mtcars, input$plot_brush)
+    brushedPoints(Rdata(), input$plot_brush)
   })  # output$info
 
 # Setup the previous next output to cycle through plots
