@@ -102,8 +102,8 @@
           "Time" = get("input")[[paste0("two", i)]],
           "Concentration" = get("input")[[paste0("three", i)]])
       })  # ldply
-  		values$df <- values$df[with(values$df, order(values$df["ID"])), ]
-  		print(values$df)
+      values$df <- values$df[with(values$df, order(values$df["ID"])), ]
+      print(values$df)
     })  # observeEvent
 
   # RenderUI for the input.boxes reactive function

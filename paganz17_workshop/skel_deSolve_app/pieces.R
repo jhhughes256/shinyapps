@@ -51,25 +51,25 @@
 
 # Specify oral doses
 # This uses the option to specify "events" in deSolve using a dataframe
-	if (input$pocheck == FALSE) {
-		oral.dose <- 0
-		oral.dose.times <- 0
-	} else {
-		oral.dose <- input$podose
-		if (input$potimes == 1) pofreq <- 24
-		if (input$potimes == 2) pofreq <- 12
-		if (input$potimes == 3) pofreq <- 8
-		if (input$potimes == 4) pofreq <- 6
-		oral.dose.times <- seq(from = input$postart, to = 120, by = pofreq)
-	}
+  if (input$pocheck == FALSE) {
+    oral.dose <- 0
+    oral.dose.times <- 0
+  } else {
+    oral.dose <- input$podose
+    if (input$potimes == 1) pofreq <- 24
+    if (input$potimes == 2) pofreq <- 12
+    if (input$potimes == 3) pofreq <- 8
+    if (input$potimes == 4) pofreq <- 6
+    oral.dose.times <- seq(from = input$postart, to = 120, by = pofreq)
+  }
 # Define bolus dose events
 # Below works for constant dosing
-	oral.dose.data <- data.frame(
-		var = 1,  # Enters into depot compartment (A[1])
+  oral.dose.data <- data.frame(
+    var = 1,  # Enters into depot compartment (A[1])
     time = oral.dose.times,
     value = oral.dose,
     method = "add"
-	)
+  )
 
   ########
   ##_IV_##
@@ -77,17 +77,17 @@
 
 # Specify bolus intravenous doses
 # Specifies "events" as seen in oral dosing
-	if (input$ivcheck == FALSE) {
-		iv.dose <- 0
-		iv.dose.times <- 0
-	} else {
-		iv.dose <- input$ivdose  # First bolus dose (mg)
-	  iv.dose.times <- input$ivtimes  # Time of first bolus (h)
-	}
+  if (input$ivcheck == FALSE) {
+    iv.dose <- 0
+    iv.dose.times <- 0
+  } else {
+    iv.dose <- input$ivdose  # First bolus dose (mg)
+    iv.dose.times <- input$ivtimes  # Time of first bolus (h)
+  }
 
 # Define bolus dose events
-	iv.dose.data <- data.frame(
-		var = 2,  # Enters into central compartment (A[2])
+  iv.dose.data <- data.frame(
+    var = 2,  # Enters into central compartment (A[2])
     time = iv.dose.times,
     value = iv.dose,
     method = "add")
