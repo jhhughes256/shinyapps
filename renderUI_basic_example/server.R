@@ -90,11 +90,11 @@
       dose <- unlist(list.dose)
       wt <- 70  # Weight (kg)
       crcl <- 90  # Creatinine clearance (mL/min)
-      CL <- 15*((wt/70)^0.75)*((crcl/90)^1.5)  # Clearance, L/h
+      CL <- 15*((wt/70)^0.75)*((crcl/90)^1.25)  # Clearance, L/h
       V <- 20*(wt/70)  # Volume of distribution, L
       KA <- 0.2  # Absorption rate constant, h^-1
       row.conc <- ldply(dose, function(dose) {
-        dose*KA/V*(KA - CL/V)*(exp(-CL/V*time) - exp(-KA*time))
+        dose*KA/(V*(KA - CL/V))*(exp(-CL/V*time) - exp(-KA*time))
       })
     })  # Rconc
 
@@ -113,11 +113,11 @@
       plotobj <- ggplot()
       plotobj <- plotobj + geom_line(aes(x = rep(time, rv$n), y = conc$Cp,
         colour = conc$n))
-      plotobj <- plotobj + scale_colour_manual(values=cPalette)
+      plotobj <- plotobj + scale_colour_manual(values = cPalette)
       plotobj <- plotobj + scale_x_continuous("\nTime (hours)")
       plotobj <- plotobj + scale_y_continuous("Concentration (mg/L)\n",
-        lim = c(0,0.3))
+        lim = c(0, 1.2))
     # Print final object
-      plotobj + theme(legend.position="none")
+      plotobj + theme(legend.position = "none")
     })  # renderPlot
   })  # shinyServer

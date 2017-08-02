@@ -31,10 +31,10 @@
       dose <- input$DOSE
       wt <- 70  # Weight (kg)
       crcl <- 90  # Creatinine clearance (mL/min)
-      CL <- 15*((wt/70)^0.75)*((crcl/90)^1.5)  # Clearance, L/h
+      CL <- 15*((wt/70)^0.75)*((crcl/90)^1.25)  # Clearance, L/h
       V <- 20*(wt/70)  # Volume of distribution, L
       KA <- 0.2  # Absorption rate constant, h^-1
-      conc <- dose*KA/V*(KA - CL/V)*(exp(-CL/V*time) - exp(-KA*time))
+      conc <- dose*KA/(V*(KA - CL/V))*(exp(-CL/V*time) - exp(-KA*time))
     })  # Rconc
 
     # Now set up your reactiveValue object where you will create "save states"
@@ -81,7 +81,7 @@
       plotobj <- plotobj + geom_line(aes(x = time, y = Rconc()), colour = "black")
       plotobj <- plotobj + scale_x_continuous("\nTime (hours)")
       plotobj <- plotobj + scale_y_continuous("Concentration (mg/L)\n",
-        lim = c(0,0.3))
+        lim = c(0, 1.2))
     # If statement to also plot the "save state" if it exists
     # saved concentrations is a data.frame with named columns but no existing
     # columns, so length will be zero until save is pressed
