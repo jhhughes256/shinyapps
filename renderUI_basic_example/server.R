@@ -9,6 +9,8 @@
 # Load package libraries
   library(shiny)
   library(ggplot2)
+  library(plyr)
+
 # Define custom ggplot theme
   theme_bw2 <- theme_set(theme_bw(base_size = 14))
 # Define sequence for time at which concentrations will be calculated
