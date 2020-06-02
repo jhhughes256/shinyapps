@@ -1,2 +1,5 @@
 newapp/
 runapp.R
+.Rproj.user
+*.png
+*rsconnect
