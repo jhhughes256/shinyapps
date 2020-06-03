@@ -1,7 +1,7 @@
 # Set up shiny server
 shinyServer(function(input, output, session) {
 
-# In this app we look up what tab we are on alot, so a reactive object
+# In this app we look up what tab we are on a lot, so a reactive object
 # should be made
 
   which.tab <- reactive({
@@ -10,26 +10,12 @@ shinyServer(function(input, output, session) {
 
 # Set up the UI for the next and previous buttons
 # Using columns that are offset to position the buttons, this uses the same
-# general grid structure of bootstrap
+# general grid structure of Bootstrap (as in javascript Bootstrap)
 # I'm not particularly happy with the offset of columns in this part of the UI,
 # distance from the borders are not even, but it shows the general idea
 
   output$nextPrev <- renderUI({
-  # First functions are made to cutdown on repetitive code
-    prevFun <- function(x) {
-      column(1,
-        prevButton,
-        offset = x
-      )  # column
-    }  # prevFun
-    nextFun <- function(x) {
-      column(1,
-        nextButton,
-        offset = x
-      )  # column
-    }  # nextFun
-
-  # Then we make the buttons render depending on which tab we are on
+  # Using the functions we defined in global
     ntabs <- length(tabList)
     if (which.tab() == ntabs) {
       prevFun(1)
@@ -38,7 +24,7 @@ shinyServer(function(input, output, session) {
       nextFun(10)  # 10 so that it is created in the same spot
     }  # if on first tab
     else {
-      div(prevFun(1), nextFun(8))
+      div(prevFun(1), nextFun(8))  # 1 column + 1 offset + 8 offsets = 10
     }  # otherwise
   })  # renderUI
 

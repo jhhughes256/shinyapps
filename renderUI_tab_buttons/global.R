@@ -35,6 +35,23 @@ nextButton <- actionButton("nextTab",
   width = 70
 )
 
+# Next we make a function that contains these simple UI functions, but takes
+# the value x to determine the offset
+
+prevFun <- function(x) {
+  column(1,
+    prevButton,
+    offset = x
+  )  # column
+}  # prevFun
+  
+nextFun <- function(x) {
+  column(1,
+    nextButton,
+    offset = x
+  )  # column
+}  # nextFun
+
 # Set up list of Tabs that will be used
 tabList <- c("Tab1", "Tab2", "Tab3", "Tab4")
 
