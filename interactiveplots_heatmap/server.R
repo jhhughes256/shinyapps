@@ -6,17 +6,6 @@
   activity <- c("Sleep", "SB", "LPA", "MVPA")
   nact <- length(activity)
   
-# Define functions
-  inGrid <- function(coord, axis, n) {
-    out <- coord
-    if (coord[axis] < 1) {
-      out[axis] <- 1
-    } else if (coord[axis] > n) {
-      out[axis] <- n
-    }
-    out
-  }
-  
 # Define heatmap theme
   heatmap.theme <- theme(
     panel.grid.major = element_blank(), 
