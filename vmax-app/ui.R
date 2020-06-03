@@ -3,7 +3,7 @@
   fixedPage(
     h3("Michaelis-Menten Model"),
     hr(),
-    plotOutput("mmPlot", width = 600),  # Rate-Concentration profile output
+    plotOutput("mmPlot", width = 600),
     fluidRow(
       column(6,
         numericInput("Vmax",

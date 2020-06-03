@@ -40,14 +40,22 @@ shinyServer(function(input, output, session) {
 
     p <- NULL
     p <- ggplot()
-    p <- p + geom_line(aes(x = c, y = v), data = Rline(), colour = "blue", size = 1)
-    p <- p + geom_hline(aes(yintercept = c(Vmax/2, Vmax)), linetype = "dashed")
-    p <- p + geom_segment(aes(x = km, y = 0, xend = km, yend = Vmax/2), linetype = "dashed")
-    p <- p + geom_text(aes(x = km + km/3, y = Vmax/20, label = "Km"), size = 6)
-    p <- p + geom_text(aes(x = Cmax*0.1, y = Vmax*0.95, label = "Vmax"), size = 6)
-    p <- p + geom_text(aes(x = Cmax*0.9, y = Vmax*0.45, label = "0.5 x Vmax"), size = 6)
-    p <- p + geom_point(aes(x = c, y = v), data = Rpoint(), colour = "red", size = 4)
-    p <- p + geom_text(aes(x = c+Cmax/10, y = v, label = paste("v =", signif(v, 3))), data = Rpoint(), size = 6)
+    p <- p + geom_line(aes(x = c, y = v), 
+      data = Rline(), colour = "blue", size = 1)
+    p <- p + geom_hline(aes(yintercept = c(Vmax/2, Vmax)), 
+      linetype = "dashed")
+    p <- p + geom_segment(aes(x = km, y = 0, xend = km, 
+      yend = Vmax/2), linetype = "dashed")
+    p <- p + geom_text(aes(x = km + km/3, y = Vmax/20, 
+      label = "Km"), size = 6)
+    p <- p + geom_text(aes(x = Cmax*0.1, y = Vmax*0.95, 
+      label = "Vmax"), size = 6)
+    p <- p + geom_text(aes(x = Cmax*0.9, y = Vmax*0.45, 
+      label = "0.5 x Vmax"), size = 6)
+    p <- p + geom_point(aes(x = c, y = v), data = Rpoint(), 
+      colour = "red", size = 4)
+    p <- p + geom_text(aes(x = c+Cmax/10, y = v, 
+      label = paste("v =", signif(v, 3))), data = Rpoint(), size = 6)
     p <- p + xlab("\nSubstrate Concentration [S]")
     p <- p + ylab("Reaction Rate v\n")
     p
